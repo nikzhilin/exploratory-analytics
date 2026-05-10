@@ -1,0 +1,7 @@
+datasets:
+  majors_all_ages: data/raw/majors_all_ages.csv
+  majors_degree_levels: data/raw/majors_degree_levels.csv
+  majors_recent_graduates: data/raw/majors_recent_graduates.csv
+  women_stem: data/raw/women-stem.csv
+
+profiles_dir: artifacts/profiles

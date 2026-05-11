@@ -1,9 +1,12 @@
 pandas
 pyarrow
-numpy
+numpy<2.4
 matplotlib
 seaborn
+plotly
+nbformat>=4.2.0
 ipykernel
+ipywidgets
 tqdm
 setuptools<81
 ydata-profiling

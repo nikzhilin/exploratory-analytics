@@ -208,6 +208,7 @@ __marimo__/
 
 # Claude
 .claude
+.claudeignore
 .repowise
 CLAUDE.md
 .mcp.json

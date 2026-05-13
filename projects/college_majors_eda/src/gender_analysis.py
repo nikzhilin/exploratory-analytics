@@ -64,7 +64,7 @@ def _spearman_log(
 ) -> None:
     rho, p_val = stats.spearmanr(df[x_col], df[y_col])
     log.info("  Спирмен: ρ = %.4f, p = %.4f", rho, p_val)
-    log.info("  |ρ| = %.4f (%s по Cohen)", abs(rho), cohen_r_magnitude(abs(rho)))
+    log.info("  |ρ| = %.4f (%s)", abs(rho), cohen_r_magnitude(abs(rho)))
     if p_val < 0.05:
         direction = "отрицательная" if rho < 0 else "положительная"
         log.info("  → H0 отвергается: значимая %s монотонная связь", direction)
@@ -185,14 +185,14 @@ def _h4_salary_male_vs_female_dominated(df: pd.DataFrame, plots_dir: Path) -> No
 
     u_stat, p_val = stats.mannwhitneyu(male_dom, female_dom, alternative="two-sided")
     n1, n2 = len(male_dom), len(female_dom)
-    r = 1 - 2 * u_stat / (n1 * n2)
+   1 - 2 * u_stat / (n1 * n2)
     log.info("  Манн–Уитни: U = %.0f, p = %.4f", u_stat, p_val)
     log.info(
         "  Медиана male-dom = %s, female-dom = %s",
         f"{male_dom.median():,.0f}",
         f"{female_dom.median():,.0f}",
     )
-    log.info("  r = %.4f (%s по Cohen)", r, cohen_r_magnitude(abs(r)))
+    log.info(" %.4f (%s)", r, cohen_r_magnitude(abs(r)))
     log.info("  → H0 отвергается: мужские специальности зарабатывают значимо больше")
 
 

@@ -10,6 +10,7 @@ import degree_levels_analysis
 import feature_engineering
 import gender_analysis
 import profiling
+import report
 import salaries_analysis
 
 PROJECT_DIR = Path(__file__).resolve().parent.parent
@@ -17,6 +18,7 @@ RAW_DATA_DIR = PROJECT_DIR / "data" / "raw"
 PROCESSED_DATA_DIR = PROJECT_DIR / "data" / "processed"
 PROFILES_DIR = PROJECT_DIR / "artifacts" / "profiles"
 PLOTS_DIR = PROJECT_DIR / "artifacts" / "plots"
+REPORTS_DIR = PROJECT_DIR / "reports"
 
 _STAGE_ALIASES = {
     "cl": "cleaning",
@@ -106,9 +108,16 @@ def main() -> None:
                 seen.add(s)
         stages = ordered
 
+    run_all = args.stages == ["all"]
+
     log.info("Running stages: %s", stages)
     for stage in stages:
         _run_stage(stage, log)
+
+    if run_all:
+        log.info("=== Stage: report ===")
+        report.run(PROCESSED_DATA_DIR, REPORTS_DIR)
+        log.info("=== Done: report ===")
 
     log.info("Pipeline complete.")
 

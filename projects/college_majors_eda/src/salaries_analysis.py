@@ -149,9 +149,9 @@ def _h2_stem_vs_nonstems(df: pd.DataFrame, plots_dir: Path) -> None:
     not_stem = df.loc[df["is_stem"] == "Not STEM", "Median"].values
     u_stat, p_val = stats.mannwhitneyu(stem, not_stem, alternative="greater")
     n1, n2 = len(stem), len(not_stem)
-    r = (2 * u_stat) / (n1 * n2) - 1
+   (2 * u_stat) / (n1 * n2) - 1
     log.info("  Манн–Уитни: U = %.0f, p = %.4f", u_stat, p_val)
-    log.info("  r = %.4f (%s по Cohen)", r, cohen_r_magnitude(abs(r)))
+    log.info(" %.4f (%s)", r, cohen_r_magnitude(abs(r)))
     log.info("  → H0 отвергается: STEM зарабатывают значимо больше Non-STEM")
 
 
@@ -220,7 +220,7 @@ def _spearman_hypothesis(
     rho, p_val = stats.spearmanr(df[x_col], df[y_col])
     abs_rho = abs(rho)
     log.info("  Спирмен: ρ = %.4f, p = %.4f", rho, p_val)
-    log.info("  |ρ| = %.4f (%s по Cohen)", abs_rho, cohen_r_magnitude(abs_rho))
+    log.info("  |ρ| = %.4f (%s)", abs_rho, cohen_r_magnitude(abs_rho))
     if p_val < 0.05:
         direction = "отрицательная" if rho < 0 else "положительная"
         log.info("  → H0 отвергается: значимая %s связь", direction)

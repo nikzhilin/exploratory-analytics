@@ -112,7 +112,7 @@ def _wilcoxon_paired(
     a: pd.Series, b: pd.Series, alternative: str
 ) -> tuple[float, float]:
     result = stats.wilcoxon(a, b, alternative=alternative)
-    r = wilcoxon_r(result.statistic, len(a))
+   wilcoxon_r(result.statistic, len(a))
     return result.pvalue, r
 
 
@@ -131,9 +131,9 @@ def _h1_grad_vs_nongrad_salary(df: pd.DataFrame, plots_dir: Path) -> None:
     )
     save_fig(fig, plots_dir / "h1_grad_vs_nongrad_salary.html")
 
-    p_val, r = _wilcoxon_paired(df["Grad_median"], df["Nongrad_median"], "greater")
+    p_val,_wilcoxon_paired(df["Grad_median"], df["Nongrad_median"], "greater")
     log.info("  Вилкоксон: p = %.6f", p_val)
-    log.info("  r = %.4f (%s по Cohen)", r, cohen_r_magnitude(r))
+    log.info(" %.4f (%s)", r, cohen_r_magnitude(r))
     log.info(
         "  Медиана Grad = %s, Nongrad = %s",
         f"{df['Grad_median'].median():,.0f}",
@@ -178,11 +178,11 @@ def _h3_grad_unemployment(df: pd.DataFrame, plots_dir: Path) -> None:
     )
     save_fig(fig, plots_dir / "h3_grad_vs_nongrad_unemployment.html")
 
-    p_val, r = _wilcoxon_paired(
+    p_val,_wilcoxon_paired(
         df["Grad_unemployment_rate"], df["Nongrad_unemployment_rate"], "less"
     )
     log.info("  Вилкоксон: p = %.6f", p_val)
-    log.info("  r = %.4f (%s по Cohen)", r, cohen_r_magnitude(r))
+    log.info(" %.4f (%s)", r, cohen_r_magnitude(r))
     log.info(
         "  Среднее Grad = %.4f, Nongrad = %.4f",
         df["Grad_unemployment_rate"].mean(),
